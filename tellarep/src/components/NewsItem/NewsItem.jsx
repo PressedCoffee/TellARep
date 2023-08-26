@@ -3,6 +3,8 @@ import axios from "axios";
 import ReactSlider from "react-slider";
 import "./NewsItem.css";
 import RepresentativeCard from "../RepresentativeCard/RepresentativeCard";
+import { ReactComponent as TellarepLogoButton } from '../../images/TellarepLogoButton.svg';
+
 
 const ControlledSlider = ({ value, onAfterChange }) => {
   //const stopPropagation = (e) => {
@@ -212,9 +214,7 @@ function NewsItem({ article }) {
       <span>{article.source.name}</span>
       <span>{article.timestamp}</span>
       <div className="action-container">
-        <button className="tellarep-button" onClick={handleTellARepClick}>
-          {/* If you have an icon, you can add it here */}
-        </button>
+        <TellarepLogoButton className="tellarep-button" onClick={handleTellARepClick} />
         <span className="tellarep-button-text">
           Write to your representative about this!
         </span>
