@@ -1,0 +1,319 @@
+.news-item {
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+.news-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* This is the default mobile style */
+.news-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Media query for tablets and larger screens */
+@media (min-width: 768px) {
+  .news-item img {
+    height: 440px; /* Increase the height for larger screens */
+  }
+}
+
+/* Media query for even larger screens, like desktops */
+@media (min-width: 1024px) {
+  .news-item img {
+    height: 500px; /* Further increase the height for desktops */
+  }
+}
+
+.news-item h3 {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.news-item p {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.news-item span {
+  font-size: 0.9em;
+  color: #777;
+  margin-right: 8px;
+}
+
+.news-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden; /* This ensures the image's rounded corners don't leak outside the card */
+  margin-bottom: 16px; /* Spacing between cards */
+}
+/*
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container {
+  z-index: 10; 
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 50%;
+  margin-left: -60px; 
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 120px;
+}
+*/
+
+.news-item:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.news-item,
+.tooltip-text {
+  pointer-events: auto;
+}
+
+.action-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Provides spacing between the button and text */
+}
+
+.tellarep-button {
+  background-image: url("C:\Users\ryros\TellARep-old\tellarep\public\TellarepLogoButton.svg");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: 12px;
+  position: relative; /* Added to allow positioning of the hover box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevents the button from shrinking */
+}
+
+.tellarep-button-text {
+  font-size: 0.9em;
+  color: #1976d2;
+  font-weight: 500; /* Make the text bolder */
+  background-color: #f1f1f1; /* Light background to make it stand out */
+  padding: 4px 8px; /* Padding around the text */
+  border-radius: 4px; /* Rounded corners for the text background */
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.news-item:hover .tellarep-button {
+  animation: pulse 0.6s infinite;
+}
+
+.tellarep-hover-box {
+  display: none;
+  position: absolute;
+  bottom: 100%; /* Position it above the button */
+  left: 50%;
+  transform: translateX(-50%); /* Center the box */
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.9em;
+  white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+.tellarep-button:hover .tellarep-hover-box {
+  display: block; /* Show the box on button hover */
+}
+
+.thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.track {
+  background-color: #ddd;
+  height: 5px;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+textarea {
+  min-height: 150px;
+  width: 100%;
+}
+
+.slider-container {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-container .thumb,
+.slider-container .track {
+  pointer-events: all;
+}
+
+/* Track */
+.track {
+  background: linear-gradient(to right, green, yellow, red);
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Thumb */
+.thumb {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid #007bff; /* blue border */
+  border-radius: 50%; /* makes it circular */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+
+.thumb:hover {
+  transform: scale(1.1);
+  border-color: #0056b3; /* darker blue on hover */
+}
+
+.thumb:active {
+  transform: scale(1.15);
+}
+
+/* Labels */
+.labels span {
+  font-size: 0.9em;
+  margin: 0 5px;
+  color: #333;
+}
+
+.labels {
+  margin-top: 15px; /* Adjust this value to control the space between the slider and the labels */
+  display: flex;
+  justify-content: space-between; /* This will space the labels evenly across the width of the slider */
+  width: 100%; /* Assuming the slider takes up full width, adjust as per your design */
+}
+
+.representatives-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.rep-card {
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+  align-items: center;
+  width: calc(
+    50% - 20px
+  ); /* Adjust for any margins/gaps you want between cards */
+  box-sizing: border-box; /* Include padding and border in the card's total width */
+}
+
+.rep-card a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 60%; /* or whatever percentage or fixed value you prefer */
+}
+
+.rep-card .rep-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 16px;
+  object-fit: cover;
+}
+
+/* NewsItem.css */
+
+.button-style {
+  background-color: #007bff; /* You can change this color to fit your site's theme */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 5px; /* This will give some spacing between buttons */
+}
+
+.button-style:hover {
+  background-color: #0056b3; /* Darken the button color a bit on hover */
+}
+
+@media (max-width: 768px) {
+  /* This breakpoint can be adjusted */
+  .rep-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}

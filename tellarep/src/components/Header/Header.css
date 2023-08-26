@@ -1,0 +1,45 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+}
+
+.logo-container h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.nav-container .nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* space between items */
+}
+
+.nav-container .nav-list li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-container .nav-list li a:hover {
+  color: #f9f9f9; /* slightly lighter shade for hover effect */
+}
+
+.logo {
+  height: 100px; /* Adjust as needed */
+  width: auto;
+  margin-right: 15px; /* Space between logo and any adjacent elements */
+}
+
+/* New media query for screens below 600px */
+@media (max-width: 599px) {
+  .nav-list {
+    flex-direction: column; /* Stack the links vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+}

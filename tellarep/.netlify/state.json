@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Stevenson Ranch",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "CA",
+				"name": "California"
+			},
+			"timezone": "America/Los_Angeles",
+			"latitude": 34.381,
+			"longitude": -118.6164
+		},
+		"timestamp": 1693006076684
+	}
+}

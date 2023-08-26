@@ -1,0 +1,32 @@
+.teaser-container {
+  background-color: #f9f9f9; /* light grey background for contrast */
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+}
+
+.teaser-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.teaser-description {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.teaser-signup-btn {
+  background-color: #007bff; /* primary color for emphasis */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* smooth color transition on hover */
+}
+
+.teaser-signup-btn:hover {
+  background-color: #0056b3; /* slightly darker shade for hover effect */
+}

@@ -1,0 +1,31 @@
+/* SharePrompt.css */
+.share-prompt {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.share-prompt-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.share-prompt-action {
+  display: flex;
+  gap: 10px;
+}
+
+.share-prompt-action a {
+  margin-right: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.share-prompt-action a:hover {
+  color: #007bff;
+}

@@ -1,0 +1,23 @@
+.thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.track {
+  background-color: #ddd;
+  height: 5px;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}

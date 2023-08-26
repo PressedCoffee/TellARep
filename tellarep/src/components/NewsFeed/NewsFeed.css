@@ -1,0 +1,39 @@
+/*
+.news-feed {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+*/
+.news-feed {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Change from center to stretch */
+}
+
+.search-input {
+  width: 80%; /* or whatever width you prefer */
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: 2px solid #007bff; /* a blue border */
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: #f6f6f6;
+  outline: none;
+  margin: 10px 0;
+}
+
+.search-input:focus {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border-color: #0056b3; /* a darker blue when focused */
+}
+
+/* If you add a search icon */
+.search-icon {
+  color: #007bff;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}

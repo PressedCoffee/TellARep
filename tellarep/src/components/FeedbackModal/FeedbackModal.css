@@ -1,0 +1,16 @@
+.floating-feedback-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #b6d5f6; /* You can choose your color */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Makes it circular */
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  cursor: pointer;
+  outline: none;
+  z-index: 1000; /* Ensures it's above most other elements */
+}
