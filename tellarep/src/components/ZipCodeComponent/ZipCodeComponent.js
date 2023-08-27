@@ -10,7 +10,7 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     const { error } = await supabase
       .from('users')
       .update({ zip_code: zipCode })
-      .eq('id', userId);
+      .eq('user_id', userId);
     if (error) {
     console.error('Error updating zip code:', error);
   }
