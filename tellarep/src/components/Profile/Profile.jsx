@@ -16,6 +16,7 @@ function Profile({ user }) {
   const [updateMessage, setUpdateMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [zipCode, setZipCode] = useState("");
 
   useEffect(() => {
     if (userData) {
@@ -37,6 +38,24 @@ function Profile({ user }) {
     }
   }, [user]);
 
+  const loadUserZipCode = async () => {
+    // get user id
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    console.log("user", user);
+
+    if (user.id) {
+      const { data: getZipCode, error: getZipCodeError } = await supabase
+        .from("users")
+        .select()
+        .eq("user_id", user.id);
+
+      setZipCode(getZipCode[0].zip_code);
+    }
+  };
+
   useEffect(() => {
     const fetchReps = async () => {
       if (userData) {
@@ -50,6 +69,7 @@ function Profile({ user }) {
       }
     };
     fetchReps();
+    loadUserZipCode();
   }, [repsUpdated, userData]);
 
   const handleZipCodeSubmit = async (zipCode) => {
@@ -69,7 +89,7 @@ function Profile({ user }) {
         .eq("zip_code", zipCode);
 
       console.log("getFilteredReps", getFilteredReps);
-      setData(getFilteredReps)
+      setData(getFilteredReps);
     }
   };
 
@@ -91,6 +111,7 @@ function Profile({ user }) {
       {userData && (
         <div>
           <p>Email: {userData.email}</p>
+          {zipCode && <p>Zip Code: {zipCode}</p>}
           <ZipCodeComponent onSubmit={handleZipCodeSubmit} />
           {/* ... rest of the JSX code ... */}
           {data &&
