@@ -36,7 +36,7 @@ const ControlledSlider = ({ value, onAfterChange }) => {
 function NewsItem({ article }) {
   const [generatedMessage, setGeneratedMessage] = useState("");
   const [editedMessage, setEditedMessage] = useState("");
-  const [isFinalized, setIsFinalized] = useState(true);
+  const [isFinalized, setIsFinalized] = useState(false);
   const [viewpoint, setViewpoint] = useState(1); // 0 = Support, 1 = Neutral, 2 = Oppose
   const [loading, setLoading] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
@@ -191,42 +191,38 @@ function NewsItem({ article }) {
 
   const getFilteredReps = async () => {
     console.log('Running getFilteredReps...')
+
     // get user id
-    // const {
-    //   data: { user },
-    // } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    // console.log("user", user);
+    console.log("user", user);
 
-    // if (user.id) {
-    //   const { data: getZipCode, error: getZipCodeError } = await supabase
-    //     .from("users")
-    //     .select()
-    //     .eq("user_id", user.id);
+    if (user.id) {
+      const { data: getZipCode, error: getZipCodeError } = await supabase
+        .from("users")
+        .select()
+        .eq("user_id", user.id);
 
-    //   if (getZipCodeError) console.log("getZipCodeError", getZipCodeError);
-    //   console.log("getZipCode", getZipCode);
+      if (getZipCodeError) console.log("getZipCodeError", getZipCodeError);
+      console.log("getZipCode", getZipCode);
 
-    //   if (getZipCode.length) {
-    //     const { data: filteredReps, error: getFilteredRepsError } =
-    //       await supabase
-    //         .from("representatives")
-    //         .select()
-    //         .eq("zip_code", getZipCode[0].zip_code);
+      if (getZipCode.length) {
+        const { data: filteredReps, error: getFilteredRepsError } =
+          await supabase
+            .from("representatives")
+            .select()
+            .eq("zip_code", getZipCode[0].zip_code);
 
-    //     console.log("filteredReps", filteredReps);
-    //     setRepresentatives(filteredReps);
+        console.log("filteredReps", filteredReps);
+        setRepresentatives(filteredReps);
 
-    //     if (getFilteredRepsError)
-    //       console.log("getFilteredRepsError", getFilteredRepsError);
-    //   }
-    // }
+        if (getFilteredRepsError)
+          console.log("getFilteredRepsError", getFilteredRepsError);
+      }
+    }
   };
-
-  useEffect(() => {
-      // Get representatives from database using supabase directly
-      getFilteredReps();
-  },[])
 
   useEffect(() => {
     if (isFinalized) {
@@ -239,6 +235,9 @@ function NewsItem({ article }) {
         .catch((error) => {
           console.error("Error fetching representatives:", error);
         });
+
+      // Get representatives from database using supabase directly
+      getFilteredReps();
     }
   }, [isFinalized]);
 
