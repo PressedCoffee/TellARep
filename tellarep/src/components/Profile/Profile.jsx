@@ -73,7 +73,6 @@ function Profile({ user }) {
   }, [repsUpdated, userData]);
 
   const handleZipCodeSubmit = async (zipCode) => {
-    // ... (the function remains unchanged)
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -111,7 +110,7 @@ function Profile({ user }) {
       {userData && (
         <div>
           <p>Email: {userData.email}</p>
-          {zipCode && <p>Zip Code: {zipCode}</p>}
+          {zipCode && <p>Current Zip Code: {zipCode}</p>}
           <ZipCodeComponent onSubmit={handleZipCodeSubmit} />
           {/* ... rest of the JSX code ... */}
           {data &&
