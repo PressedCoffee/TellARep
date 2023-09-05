@@ -8,15 +8,20 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     e.preventDefault();
     onSubmit(zipCode);
 
+    // get user id
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     // saving zip code to database
     const { error } = await supabase
-      .from('users')
+      .from("users")
       .update({ zip_code: zipCode })
-      .eq('user_id', userId);
+      .eq("user_id", user.id);
     if (error) {
-    console.error('Error updating zip code:', error);
-  }
-    console.log('userId', userId); // This is just for debugging
+      console.error("Error updating zip code:", error);
+    }
+    console.log("user.id", user.id);
     console.log("Sending zip code:", zipCode);
 
     try {
