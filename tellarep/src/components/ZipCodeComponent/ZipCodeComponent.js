@@ -7,6 +7,8 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     onSubmit(zipCode);
+
+    // saving zip code to database
     const { error } = await supabase
       .from('users')
       .update({ zip_code: zipCode })
@@ -14,7 +16,7 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     if (error) {
     console.error('Error updating zip code:', error);
   }
-    console.log(zipCode); // This is just for debugging
+    console.log('userId', userId); // This is just for debugging
     console.log("Sending zip code:", zipCode);
 
     try {
