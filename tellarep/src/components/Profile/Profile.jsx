@@ -54,6 +54,13 @@ function Profile({ user }) {
 
   const handleZipCodeSubmit = async (zipCode) => {
     // ... (the function remains unchanged)
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    console.log("zipCode", zipCode);
+    console.log("user", user);
+
   };
 
   const handleUpdate = async () => {
