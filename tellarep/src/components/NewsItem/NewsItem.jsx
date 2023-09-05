@@ -4,7 +4,7 @@ import ReactSlider from "react-slider";
 import "./NewsItem.css";
 import RepresentativeCard from "../RepresentativeCard/RepresentativeCard";
 import { ReactComponent as TellarepLogoButton } from '../../images/TellarepLogoButton.svg';
-
+import { supabase } from "../../supabaseClient"; // Import your Supabase client setup
 
 const ControlledSlider = ({ value, onAfterChange }) => {
   //const stopPropagation = (e) => {
@@ -189,8 +189,42 @@ function NewsItem({ article }) {
     window.open(`https://wa.me/?text=${editedMessage}`);
   };
 
+  const getFilteredReps = async () => {
+    // get user id
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    console.log("user", user);
+
+    if(user.id) {
+      const { data: getZipCode, error : getZipCodeError} = await supabase
+        .from("users")
+        .select()
+        .eq("user_id", user.id);
+
+        console.log(getZipCodeError)
+        console.log('getZipCode', getZipCode)
+
+      //   const { data: getFilteredReps, error } = await supabase
+      //   .from("representatives")
+      //   .select()
+      //   .eq("zip_code", zipCode);
+
+      // console.log("getFilteredReps", getFilteredReps);
+      // setData(getFilteredReps)
+    }
+
+    // get filtered reps
+    if (user.id) {
+    
+    }
+  }
+
   useEffect(() => {
     if (isFinalized) {
+
+      // Get representatives from database using Netlify function
       axios
         .get("/.netlify/functions/get-reps-from-db")
         .then((response) => {
@@ -199,6 +233,10 @@ function NewsItem({ article }) {
         .catch((error) => {
           console.error("Error fetching representatives:", error);
         });
+
+        // Get representatives from database using supabase directly
+        getFilteredReps()
+
     }
   }, [isFinalized]);
 
