@@ -21,7 +21,7 @@ exports.handler = async function (event, context) {
       model: "gpt-3.5-turbo",
       messages: messages,
       temperature: 0.7,
-      max_tokens: 325,
+      max_tokens: 100,
     });
 
     console.log("OpenAI Response:", chatCompletion);
