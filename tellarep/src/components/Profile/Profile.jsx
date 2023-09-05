@@ -61,6 +61,16 @@ function Profile({ user }) {
     console.log("zipCode", zipCode);
     console.log("user", user);
 
+    // get filtered reps
+    if (user.id) {
+      const { data: getFilteredReps, error } = await supabase
+        .from("representatives")
+        .select()
+        .eq("zip_code", zipCode);
+
+      console.log("getFilteredReps", getFilteredReps);
+      setData(getFilteredReps)
+    }
   };
 
   const handleUpdate = async () => {

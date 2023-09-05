@@ -14,10 +14,10 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     } = await supabase.auth.getUser();
 
     // saving zip code to database
-    const { data: usersResponse,error } = await supabase
-      .from("users")
-      .update({ zip_code: zipCode })
-      .eq("user_id", user.id).select();
+    // const { data: usersResponse,error } = await supabase
+    //   .from("users")
+    //   .update({ zip_code: zipCode })
+    //   .eq("user_id", user.id).select();
 
     if (error) {
       console.error("Error updating zip code:", error);
@@ -28,14 +28,9 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     console.log('users res',usersResponse)
 
     // get filtered reps
-    if(usersResponse) {
-      const { data: getFilteredReps, error } = await supabase
-      .from('representatives')
-      .select()
-      .eq("zip_code", zipCode);
-
-      console.log('getFilteredReps', getFilteredReps)
-    }
+    // if(usersResponse.length) {
+     
+    // }
 
 
     try {
