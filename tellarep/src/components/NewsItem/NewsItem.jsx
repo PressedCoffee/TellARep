@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactSlider from "react-slider";
 import "./NewsItem.css";
 import RepresentativeCard from "../RepresentativeCard/RepresentativeCard";
-import { ReactComponent as TellarepLogoButton } from '../../images/TellarepLogoButton.svg';
+import { ReactComponent as TellarepLogoButton } from "../../images/TellarepLogoButton.svg";
 import { supabase } from "../../supabaseClient"; // Import your Supabase client setup
 
 const ControlledSlider = ({ value, onAfterChange }) => {
@@ -197,33 +197,35 @@ function NewsItem({ article }) {
 
     console.log("user", user);
 
-    if(user.id) {
-      const { data: getZipCode, error : getZipCodeError} = await supabase
+    if (user.id) {
+      const { data: getZipCode, error: getZipCodeError } = await supabase
         .from("users")
         .select()
         .eq("user_id", user.id);
 
-        console.log(getZipCodeError)
-        console.log('getZipCode', getZipCode)
+      console.log("getZipCodeError", getZipCodeError);
+      console.log("getZipCode", getZipCode);
 
-      //   const { data: getFilteredReps, error } = await supabase
-      //   .from("representatives")
-      //   .select()
-      //   .eq("zip_code", zipCode);
+      if (getZipCode.length) {
+        const { data: getFilteredReps, error: getFilteredRepsError } =
+          await supabase
+            .from("representatives")
+            .select()
+            .eq("zip_code", getZipCode[0].zip_code);
 
-      // console.log("getFilteredReps", getFilteredReps);
-      // setData(getFilteredReps)
+        console.log("getFilteredReps", getFilteredReps);
+        console.log("getFilteredRepsError", getFilteredRepsError);
+      }
+      setRepresentatives(getFilteredReps);
     }
 
     // get filtered reps
     if (user.id) {
-    
     }
-  }
+  };
 
   useEffect(() => {
     if (isFinalized) {
-
       // Get representatives from database using Netlify function
       axios
         .get("/.netlify/functions/get-reps-from-db")
@@ -234,9 +236,8 @@ function NewsItem({ article }) {
           console.error("Error fetching representatives:", error);
         });
 
-        // Get representatives from database using supabase directly
-        getFilteredReps()
-
+      // Get representatives from database using supabase directly
+      getFilteredReps();
     }
   }, [isFinalized]);
 
@@ -252,7 +253,10 @@ function NewsItem({ article }) {
       <span>{article.source.name}</span>
       <span>{article.timestamp}</span>
       <div className="action-container">
-        <TellarepLogoButton className="tellarep-button" onClick={handleTellARepClick} />
+        <TellarepLogoButton
+          className="tellarep-button"
+          onClick={handleTellARepClick}
+        />
         <span className="tellarep-button-text">
           Write to your representative about this!
         </span>
