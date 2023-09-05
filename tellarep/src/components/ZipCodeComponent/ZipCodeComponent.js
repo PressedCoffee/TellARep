@@ -8,29 +8,9 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     e.preventDefault();
     onSubmit(zipCode);
 
-    // get user id
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    // saving zip code to database
-    // const { data: usersResponse,error } = await supabase
-    //   .from("users")
-    //   .update({ zip_code: zipCode })
-    //   .eq("user_id", user.id).select();
-
     if (error) {
       console.error("Error updating zip code:", error);
     }
-
-    console.log("user.id", user.id);
-    console.log("Sending zip code:", zipCode);
-    console.log('users res',usersResponse)
-
-    // get filtered reps
-    // if(usersResponse.length) {
-     
-    // }
 
 
     try {
