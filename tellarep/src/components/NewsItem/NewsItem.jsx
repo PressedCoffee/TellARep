@@ -222,6 +222,7 @@ function NewsItem({ article }) {
   };
 
   useEffect(() => {
+    console.log('Running getFilteredReps...')
     // Get representatives from database using supabase directly
     getFilteredReps();
   }, []);
