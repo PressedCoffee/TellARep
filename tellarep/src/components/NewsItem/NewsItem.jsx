@@ -36,7 +36,7 @@ const ControlledSlider = ({ value, onAfterChange }) => {
 function NewsItem({ article }) {
   const [generatedMessage, setGeneratedMessage] = useState("");
   const [editedMessage, setEditedMessage] = useState("");
-  const [isFinalized, setIsFinalized] = useState(false);
+  const [isFinalized, setIsFinalized] = useState(true);
   const [viewpoint, setViewpoint] = useState(1); // 0 = Support, 1 = Neutral, 2 = Oppose
   const [loading, setLoading] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
