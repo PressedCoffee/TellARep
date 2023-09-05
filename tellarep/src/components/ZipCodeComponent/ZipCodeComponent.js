@@ -8,11 +8,6 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     e.preventDefault();
     onSubmit(zipCode);
 
-    if (error) {
-      console.error("Error updating zip code:", error);
-    }
-
-
     try {
       const response = await fetch("/.netlify/functions/get-representatives", {
         method: "POST",
