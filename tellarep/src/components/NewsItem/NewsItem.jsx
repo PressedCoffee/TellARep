@@ -224,6 +224,11 @@ function NewsItem({ article }) {
   };
 
   useEffect(() => {
+      // Get representatives from database using supabase directly
+      getFilteredReps();
+  },[])
+
+  useEffect(() => {
     if (isFinalized) {
       // Get representatives from database using Netlify function
       axios
@@ -234,9 +239,6 @@ function NewsItem({ article }) {
         .catch((error) => {
           console.error("Error fetching representatives:", error);
         });
-
-      // Get representatives from database using supabase directly
-      getFilteredReps();
     }
   }, [isFinalized]);
 
