@@ -207,25 +207,20 @@ function NewsItem({ article }) {
       console.log("getZipCode", getZipCode);
 
       if (getZipCode.length) {
-        const { data: getFilteredReps, error: getFilteredRepsError } =
+        const { data: filteredReps, error: getFilteredRepsError } =
           await supabase
             .from("representatives")
             .select()
             .eq("zip_code", getZipCode[0].zip_code);
 
-        console.log("getFilteredReps", getFilteredReps);
+        console.log("filteredReps", filteredReps);
+        setRepresentatives(filteredReps);
+
         if (getFilteredRepsError)
           console.log("getFilteredRepsError", getFilteredRepsError);
       }
-      setRepresentatives(getFilteredReps);
     }
   };
-
-  useEffect(() => {
-    console.log('Running getFilteredReps...')
-    // Get representatives from database using supabase directly
-    getFilteredReps();
-  }, []);
 
   useEffect(() => {
     if (isFinalized) {
@@ -238,6 +233,10 @@ function NewsItem({ article }) {
         .catch((error) => {
           console.error("Error fetching representatives:", error);
         });
+
+      // Get representatives from database using supabase directly
+      console.log("Running getFilteredReps...");
+      getFilteredReps();
     }
   }, [isFinalized]);
 
