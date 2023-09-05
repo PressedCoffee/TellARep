@@ -86,7 +86,13 @@ function Profile({ user }) {
   }
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      height: '100vh', // Optionally, set a fixed height for vertical centering
+      textAlign: 'center', // Center text inside div
+    }}>
       <h2>Profile</h2>
       {userData && (
         <div>
@@ -104,6 +110,7 @@ function Profile({ user }) {
         </div>
       )}
     </div>
+    
   );
 }
 
