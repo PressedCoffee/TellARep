@@ -203,7 +203,7 @@ function NewsItem({ article }) {
         .select()
         .eq("user_id", user.id);
 
-      console.log("getZipCodeError", getZipCodeError);
+     if(getZipCodeError) console.log("getZipCodeError", getZipCodeError);
       console.log("getZipCode", getZipCode);
 
       if (getZipCode.length) {
@@ -214,13 +214,9 @@ function NewsItem({ article }) {
             .eq("zip_code", getZipCode[0].zip_code);
 
         console.log("getFilteredReps", getFilteredReps);
-        console.log("getFilteredRepsError", getFilteredRepsError);
+        if(getFilteredRepsError) console.log("getFilteredRepsError", getFilteredRepsError);
       }
       setRepresentatives(getFilteredReps);
-    }
-
-    // get filtered reps
-    if (user.id) {
     }
   };
 
