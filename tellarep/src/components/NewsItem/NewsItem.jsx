@@ -203,7 +203,7 @@ function NewsItem({ article }) {
         .select()
         .eq("user_id", user.id);
 
-     if(getZipCodeError) console.log("getZipCodeError", getZipCodeError);
+      if (getZipCodeError) console.log("getZipCodeError", getZipCodeError);
       console.log("getZipCode", getZipCode);
 
       if (getZipCode.length) {
@@ -214,11 +214,17 @@ function NewsItem({ article }) {
             .eq("zip_code", getZipCode[0].zip_code);
 
         console.log("getFilteredReps", getFilteredReps);
-        if(getFilteredRepsError) console.log("getFilteredRepsError", getFilteredRepsError);
+        if (getFilteredRepsError)
+          console.log("getFilteredRepsError", getFilteredRepsError);
       }
       setRepresentatives(getFilteredReps);
     }
   };
+
+  useEffect(() => {
+    // Get representatives from database using supabase directly
+    getFilteredReps();
+  }, []);
 
   useEffect(() => {
     if (isFinalized) {
@@ -231,9 +237,6 @@ function NewsItem({ article }) {
         .catch((error) => {
           console.error("Error fetching representatives:", error);
         });
-
-      // Get representatives from database using supabase directly
-      getFilteredReps();
     }
   }, [isFinalized]);
 
