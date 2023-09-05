@@ -86,14 +86,7 @@ function Profile({ user }) {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      // justifyContent: 'center',
-      height: '100vh', 
-      // textAlign: 'center',
-    }}>
+    <div>
       <h2>Profile</h2>
       {userData && (
         <div>
@@ -111,7 +104,6 @@ function Profile({ user }) {
         </div>
       )}
     </div>
-    
   );
 }
 

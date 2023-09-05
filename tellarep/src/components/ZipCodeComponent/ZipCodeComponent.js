@@ -8,6 +8,19 @@ const ZipCodeComponent = ({ userId, onSubmit }) => {
     e.preventDefault();
     onSubmit(zipCode);
 
+    // get user id
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // saving zip code to database
+    const { error } = await supabase
+      .from("users")
+      .update({ zip_code: zipCode })
+      .eq("user_id", user.id);
+
+    if (error) console.error("Error updating zip code:", error);
+
     try {
       const response = await fetch("/.netlify/functions/get-representatives", {
         method: "POST",
