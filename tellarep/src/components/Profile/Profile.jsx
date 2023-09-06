@@ -57,18 +57,18 @@ function Profile({ user }) {
   };
 
   useEffect(() => {
-    const fetchReps = async () => {
-      if (userData) {
-        const response = await fetch("/.netlify/functions/get-reps-from-db");
-        const data = await response.json();
-        if (data && data.length) {
-          setData(data);
-        } else {
-          console.error("Error fetching representatives:", data.error);
-        }
-      }
-    };
-    fetchReps();
+    // const fetchReps = async () => {
+    //   if (userData) {
+    //     const response = await fetch("/.netlify/functions/get-reps-from-db");
+    //     const data = await response.json();
+    //     if (data && data.length) {
+    //       setData(data);
+    //     } else {
+    //       console.error("Error fetching representatives:", data.error);
+    //     }
+    //   }
+    // };
+    // fetchReps();
     loadUserZipCode();
   }, [repsUpdated, userData]);
 
