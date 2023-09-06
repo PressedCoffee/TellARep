@@ -143,7 +143,7 @@ function Profile({ user }) {
       {userData && (
         <div>
           <p>Email: {userData.email}</p>
-          {/* {zipCode && <p>Current Zip Code: {zipCode}</p>} */}
+          {zipCode && <p>Current Zip Code: {zipCode}</p>}
           <ZipCodeComponent onSubmit={handleZipCodeSubmit} />
           {/* ... rest of the JSX code ... */}
           {data && !repsLoading ? (
