@@ -53,6 +53,29 @@ function Profile({ user }) {
         .eq("user_id", user.id);
 
       setZipCode(getZipCode[0].zip_code);
+
+      if (getZipCode.length) {
+        const { data: filteredReps, error: getFilteredRepsError } =
+          await supabase
+            .from("representatives")
+            .select()
+            .eq("zip_code", getZipCode[0].zip_code);
+
+        console.log("filteredReps", filteredReps);
+        setData(filteredReps);
+
+        if (getFilteredRepsError)
+          console.log("getFilteredRepsError", getFilteredRepsError);
+      } else {
+        const { data: filteredReps, error: getFilteredRepsError } =
+          await supabase.from("representatives").select();
+
+        console.log("filteredReps", filteredReps);
+        setData(filteredReps);
+
+        if (getFilteredRepsError)
+          console.log("getFilteredRepsError", getFilteredRepsError);
+      }
     }
   };
 
