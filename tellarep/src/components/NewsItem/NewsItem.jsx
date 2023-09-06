@@ -227,14 +227,14 @@ function NewsItem({ article }) {
   useEffect(() => {
     if (isFinalized) {
       // Get representatives from database using Netlify function
-      axios
-        .get("/.netlify/functions/get-reps-from-db")
-        .then((response) => {
-          setRepresentatives(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching representatives:", error);
-        });
+      // axios
+      //   .get("/.netlify/functions/get-reps-from-db")
+      //   .then((response) => {
+      //     setRepresentatives(response.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error fetching representatives:", error);
+      //   });
 
       // Get representatives from database using supabase directly
       getFilteredReps();
