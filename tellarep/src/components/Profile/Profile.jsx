@@ -54,12 +54,16 @@ function Profile({ user }) {
 
       setZipCode(getZipCode[0].zip_code);
 
+      console.log('zipCode', zipCode)
+
       if (getZipCode.length) {
+        console.log('Filtering reps by zip code...', zipCode)
+
         const { data: filteredReps, error: getFilteredRepsError } =
           await supabase
             .from("representatives")
             .select()
-            .eq("zip_code", getZipCode[0].zip_code);
+            .eq("zip_code", zipCode);
 
         console.log("filteredReps", filteredReps);
         setData(filteredReps);
@@ -67,11 +71,12 @@ function Profile({ user }) {
         if (getFilteredRepsError)
           console.log("getFilteredRepsError", getFilteredRepsError);
       } else {
-        const { data: filteredReps, error: getFilteredRepsError } =
-          await supabase.from("representatives").select();
+        console.log('Getting all reps...')
 
-        console.log("filteredReps", filteredReps);
-        setData(filteredReps);
+        const { data: allReps, error: getFilteredRepsError } =
+          await supabase.from("representatives").select('*');
+
+        setData(allReps);
 
         if (getFilteredRepsError)
           console.log("getFilteredRepsError", getFilteredRepsError);
