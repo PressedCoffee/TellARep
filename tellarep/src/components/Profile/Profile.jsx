@@ -121,6 +121,8 @@ function Profile({ user }) {
         .eq("zip_code", zipCode);
 
       console.log("getFilteredReps", getFilteredReps);
+      setZipCode(zipCode);
+      
       setData(getFilteredReps);
     }
   };
