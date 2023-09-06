@@ -3,6 +3,8 @@ import { supabase } from "../../supabaseClient";
 import ZipCodeComponent from "../ZipCodeComponent/ZipCodeComponent";
 import RepresentativeCard from "../RepresentativeCard/RepresentativeCard";
 import "./Profile.css";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 function Profile({ user }) {
   const [data, setData] = useState(null);
@@ -17,6 +19,7 @@ function Profile({ user }) {
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [zipCode, setZipCode] = useState("");
+  const [repsLoading, setRepsLoading] = useState(true);
 
   useEffect(() => {
     if (userData) {
@@ -54,10 +57,10 @@ function Profile({ user }) {
 
       setZipCode(getZipCode[0].zip_code);
 
-      console.log('zipCode', zipCode)
+      console.log("zipCode", zipCode);
 
       if (getZipCode.length) {
-        console.log('Filtering reps by zip code...', zipCode)
+        console.log("Filtering reps by zip code...", getZipCode[0].zip_code);
 
         const { data: filteredReps, error: getFilteredRepsError } =
           await supabase
@@ -66,18 +69,20 @@ function Profile({ user }) {
             .eq("zip_code", zipCode);
 
         console.log("filteredReps", filteredReps);
+        if (filteredReps.length) setRepsLoading(false);
         setData(filteredReps);
 
         if (getFilteredRepsError)
           console.log("getFilteredRepsError", getFilteredRepsError);
       } else {
-        console.log('Getting all reps...')
+        console.log("Getting all reps...");
 
-        const { data: allReps, error: getFilteredRepsError } =
-          await supabase.from("representatives").select('*');
+        const { data: allReps, error: getFilteredRepsError } = await supabase
+          .from("representatives")
+          .select("*");
 
+        if (allReps.length) setRepsLoading(false);
         setData(allReps);
-
         if (getFilteredRepsError)
           console.log("getFilteredRepsError", getFilteredRepsError);
       }
@@ -141,14 +146,19 @@ function Profile({ user }) {
           {/* {zipCode && <p>Current Zip Code: {zipCode}</p>} */}
           <ZipCodeComponent onSubmit={handleZipCodeSubmit} />
           {/* ... rest of the JSX code ... */}
-          {data &&
+          {data && !repsLoading ? (
             data.map((rep) => (
               <RepresentativeCard
                 key={rep.rep_id}
                 rep={rep}
                 userData={userData}
               />
-            ))}
+            ))
+          ) : (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          )}
         </div>
       )}
     </div>
